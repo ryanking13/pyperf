@@ -277,9 +277,8 @@ class Runner:
         return self.args.verbose or multiline_output(self.args)
 
     def _only_in_worker(self, option):
-        if not self.args.worker and not self.args.in_process:
-            raise CLIError("option %s requires --worker or --in-process"
-                           % option)
+        if not self.args.worker:
+            raise CLIError("option %s requires --worker" % option)
 
     def _process_args_impl(self):
         args = self.args
