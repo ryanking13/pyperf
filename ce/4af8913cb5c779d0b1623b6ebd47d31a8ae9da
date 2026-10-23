@@ -1,0 +1,19 @@
+pyperf/_runner.py
+  s_145dc68dc11c9a::t_0db13ce0170c98 280-281
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ce4af8913cb5c779d0b1623b6ebd47d31a8ae9da",
+  "prompts": {},
+  "sessions": {
+    "s_145dc68dc11c9a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ea9408fb-a5c2-410f-b15a-4fd0ff4c37c7",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Gyeongjae Choi <gyeongjae@cloudflare.com>"
+    }
+  }
+}
