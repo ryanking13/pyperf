@@ -1,0 +1,29 @@
+pyperf/_runner.py
+  s_c60d0d2ccee87b::t_51cdad1ac79c58 761-764
+pyperf/tests/test_inprocess.py
+  s_145dc68dc11c9a::t_826331a65488c2 2,135-141
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "7b758fb251b2904414cd8cf52da46ec377966fdd",
+  "prompts": {},
+  "sessions": {
+    "s_145dc68dc11c9a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ea9408fb-a5c2-410f-b15a-4fd0ff4c37c7",
+        "model": "unknown"
+      },
+      "human_author": "Gyeongjae Choi <gyeongjae@cloudflare.com>"
+    },
+    "s_c60d0d2ccee87b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "725ecd5d-f4da-4c4c-ace3-8fa191a80da6",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Gyeongjae Choi <gyeongjae@cloudflare.com>"
+    }
+  }
+}
