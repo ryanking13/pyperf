@@ -758,6 +758,10 @@ class Runner:
         timeit_compare_benchs(name_ref, benchs[0], name_changed, benchs[1], args)
 
     def bench_command(self, name, command):
+        if self.parse_args().in_process:
+            raise ValueError("bench_command() cannot be used with "
+                             "--in-process")
+
         if not self._check_worker_task():
             return None
 

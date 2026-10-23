@@ -1,4 +1,5 @@
 import os.path
+import sys
 import unittest
 from unittest import mock
 
@@ -130,6 +131,13 @@ class TestInProcess(unittest.TestCase):
         with mock.patch("pyperf._manager.Manager.spawn_worker") as mock_spawn:
             bench, _, _ = self.exec_in_process()
             mock_spawn.assert_not_called()
+
+    def test_bench_command_rejected(self):
+        runner = self.create_runner(["--in-process"])
+        with self.assertRaises(ValueError) as cm:
+            runner.bench_command("bench", [sys.executable, "-c", "pass"])
+        self.assertEqual(str(cm.exception),
+                         "bench_command() cannot be used with --in-process")
 
 
 if __name__ == "__main__":
