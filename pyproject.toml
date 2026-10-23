@@ -21,6 +21,13 @@
 #  - set version to n+1
 #  - git commit -a -m "post-release"
 #  - git push or send the PR to the repository
+#
+# Updating .github/workflows/publish.txt:
+#
+#  - this is usually updated by Dependabot once per month as needed
+#  - Dependabot creates security updates without waiting for the schedule
+#  - if you need to update publish.txt manually, install pip-tools and
+#    run the command at the top of the file.
 
 [build-system]
 requires = ["setuptools >= 61"]
@@ -44,8 +51,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
-# Also update: README.rst, docs/run_benchmark.rst
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = ["psutil>=5.9.0"]
 
 [project.optional-dependencies]
@@ -67,6 +73,9 @@ packages = ["pyperf", "pyperf.tests"]
 
 [tool.setuptools.dynamic]
 version = {attr = "pyperf.__version__"}
+
+[tool.ruff]
+fix = true
 
 [tool.ruff.lint]
 extend-select = ["C90", "UP"]

@@ -485,10 +485,39 @@ BenchmarkSuite class
       It can be ``None``.
 
 
+HookBase class
+--------------
+
+.. class:: HookBase()
+
+   Hook used to do some actions before and after benchmark's run. It can collect
+   statistics, run external tools.
+
+   Methods:
+
+   .. method:: __enter__()
+
+      Called immediately before running benchmark code.
+
+      May be called multiple times per instance.
+
+   .. method:: __exit__(exc_type, exc_value, traceback):
+
+      Called immediately after running benchmark code.
+
+      May be called multiple times per instance.
+
+   .. method:: teardown(metadata)
+
+      Called when the hook is completed for a process.
+
+      May add any information collected to the passed-in ``metadata`` dictionary.
+
+
 Runner class
 ------------
 
-.. class:: Runner(values=3, warmups=1, processes=20, loops=0, min_time=0.1, metadata=None, show_name=True, program_args=None, add_cmdline_args=None)
+.. class:: Runner(values=3, warmups=1, processes=20, loops=0, min_time=0.1, metadata=None, show_name=True, program_args=None, add_cmdline_args=None, hooks=None)
 
    Tool to run a benchmark in text mode.
 
@@ -511,6 +540,10 @@ Runner class
    with ``add_cmdline_args(cmd, args)`` where *cmd* is the command line
    (``list``) which must be modified in place and *args* is the :attr:`args`
    attribute of the runner.
+
+   *hooks* is a list or tuple of custom hooks. Each hook should implement
+   :class:`HookBase` and have ``name`` attribute and ``load()`` method that
+   returns instance of the hook.
 
    If *show_name* is true, displays the benchmark name.
 

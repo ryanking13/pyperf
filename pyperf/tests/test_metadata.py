@@ -5,7 +5,7 @@ import unittest
 from unittest import mock
 
 from pyperf import _collect_metadata as perf_metadata
-from pyperf._metadata import METADATA_VALUE_TYPES
+from pyperf._metadata import METADATA_VALUE_TYPES, check_metadata
 
 
 MANDATORY_METADATA = [
@@ -34,6 +34,9 @@ class TestMetadata(unittest.TestCase):
             if isinstance(value, str):
                 self.assertEqual(value.strip(), value)
                 self.assertNotIn('\n', value)
+
+    def test_zero_memory_metadata(self):
+        check_metadata('mem_max_rss', 0)
 
     def test_collect_cpu_affinity(self):
         metadata = {}
@@ -163,7 +166,7 @@ class CpuFunctionsTests(unittest.TestCase):
             elif filename == '/sys/devices/system/cpu/cpuidle/current_driver':
                 data = 'IDLE_DRV\n'
             else:
-                raise ValueError("unexpect open: %r" % filename)
+                raise ValueError("unexpected open: %r" % filename)
             return io.StringIO(data)
 
         with mock.patch('pyperf._collect_metadata.get_isolated_cpus', return_value=[2]):
@@ -196,7 +199,7 @@ class CpuFunctionsTests(unittest.TestCase):
             elif filename.startswith('/sys/devices/system/cpu/cpu2'):
                 raise OSError
             else:
-                raise ValueError("unexpect open: %r" % filename)
+                raise ValueError("unexpected open: %r" % filename)
             return io.StringIO(data)
 
         with mock.patch('pyperf._utils.open', create=True, side_effect=mock_open):
@@ -214,7 +217,7 @@ class CpuFunctionsTests(unittest.TestCase):
             if filename == '/proc/cpuinfo':
                 data = self.POWER8_CPUINFO
             else:
-                raise ValueError("unexpect open: %r" % filename)
+                raise ValueError("unexpected open: %r" % filename)
             return io.StringIO(data)
 
         with mock.patch('pyperf._utils.open', create=True, side_effect=mock_open):
